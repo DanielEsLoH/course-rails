@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     patch 'question/update', to: 'questions#update'
     delete 'question/destroy', to: 'questions#destroy'
   end
-  resources :chapters
+  resources :chapters do
+    get 'body/edit', to: "chapters#body"
+  end
   resources :evaluations
   devise_for :users
   authenticated(:user) do
