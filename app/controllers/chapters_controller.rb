@@ -15,6 +15,10 @@ class ChaptersController < ApplicationController
   def edit
   end
 
+  def body
+    @chapter = Section.find(params[:chapter_id])
+  end
+
   def create
     @chapter = current_user.sections.build(chapter_params)
     @chapter.section_type = 2
@@ -22,7 +26,7 @@ class ChaptersController < ApplicationController
     respond_to do |format|
       if @chapter.save
         format.turbo_stream { render turbo_stream: turbo_stream.replace('chapters_all', 
-                                                  partial: 'chapters/chapters', locals: { chapters: Section.grab_all_chapters }) }
+                                                  partial: 'chapters/chapters', locals: { chapters: Section.grab_all_chapters })}
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -32,8 +36,9 @@ class ChaptersController < ApplicationController
   def update
     respond_to do |format|
       if @chapter.update(chapter_params)
-        format.turbo_stream { render turbo_stream: turbo.replace("section_#{@chapter.id}", 
-                                                    partial: 'chapters/card_chapter', locals: {chapter: @chapter}) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("section_#{@chapter.id}",
+          partial: 'chapters/card_chapter',
+          locals: { chapter: @chapter }) }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

@@ -3,6 +3,6 @@ class Section < ApplicationRecord
   scope :grab_all_chapters, -> { where ("section_type = 2")}
   belongs_to :user
   has_many :questions
-
+  has_rich_text :body
   enum section_type: [:default, :evaluation, :chapter]
 end
