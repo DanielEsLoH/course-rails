@@ -37,8 +37,7 @@ class ChaptersController < ApplicationController
     respond_to do |format|
       if @chapter.update(chapter_params)
         format.turbo_stream { render turbo_stream: turbo_stream.replace("section_#{@chapter.id}",
-          partial: 'chapters/card_chapter',
-          locals: { chapter: @chapter }) }
+                              partial: 'chapters/card_chapter', locals: { chapter: @chapter }) }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
