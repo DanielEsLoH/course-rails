@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :questions do
-    resources :options
+    post "option/create", to: "options#create"
   end
   resources :sections do
     post 'question/create', to: 'questions#create'
