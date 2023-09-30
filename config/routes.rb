@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :questions do
+    post "option/create", to: "options#create"
+    get 'option/edit', to: 'options#edit'
+    patch 'option/update', to: 'options#update'
+    delete 'option/destroy', to: 'options#destroy'
+  end
   resources :sections do
     post 'question/create', to: 'questions#create'
     get 'question/edit', to: 'questions#edit'
