@@ -16,13 +16,14 @@ class SurveysController < ApplicationController
   end
 
   def create
-    @survey = Survey.new(survey_params)
+    @survey = current_user.surveys.build(survey_params)
 
     respond_to do |format|
       if @survey.save
-        format.html { redirect_to survey_url(@survey), notice: "Survey was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
+          format.turbo_stream { render turbo_stream: turbo_stream.replace('surveys_all', 
+                        partial: 'surveys/surveys', locals: { surveys: Survey.all })}
+        else
+          format.html { render :new, status: :unprocessable_entity }
       end
     end
   end
@@ -51,6 +52,6 @@ class SurveysController < ApplicationController
     end
 
     def survey_params
-      params.require(:survey).permit(:name, :description, :user_id)
+      params.require(:survey).permit(:name, :description, :avatar)
     end
 end
