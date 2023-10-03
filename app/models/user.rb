@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :confirmable, :trackable
 
   has_many :sections, dependent: :destroy
+  has_many :surveys, dependent: :destroy
 end
