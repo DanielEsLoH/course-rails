@@ -1,7 +1,8 @@
+<%= turbo_frame_tag 'modal' %>
 <section id="<%= dom_id survey %>" class="border-2 w-9/12 mx-auto flex h-48 rounded-lg shadow-lg p-2 my-20" >
   <div class="w-48 ">
-    <% if @survey.avatar.attached? %>
-    <%= image_tag(@survey.avatar, class: 'object-fit h-full w-full') %>
+    <% if survey.avatar.attached? %>
+    <%= image_tag(survey.avatar, class: 'object-fit h-full w-full') %>
     <% else %>
     <%= image_tag("Upload", class: 'object-fit h-full w-full') %>
     <% end %>
