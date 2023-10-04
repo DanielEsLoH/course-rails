@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "chapter_body", class:"border-2 w-full rounded-lg py-5" do %>
-  <%= form_with(model: @chapter, url: chapter_path(@chapter), class:"flex flex-col") do |f| %>
+  <%= form_with(model: @chapter, url: chapter_path(@chapter), class: "flex flex-col") do |f| %>
     <h3>Editing body.</h3>
     <div>
       <%= f.label :body %>

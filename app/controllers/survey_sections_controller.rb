@@ -6,11 +6,12 @@ class SurveySectionsController < ApplicationController
   end
 
   def save_sections
+    ids = params[:sections][:ids].reject  { |id| id.empty? }
+    new_ids = SurveySection.check_no_repeat_records(@survey, ids, [])
     puts "---"
-    puts "---"
-    puts params
-    puts params[:sections][:ids]
-    puts "---"
+    print ids
+    puts "-"
+    print new_ids
     puts "---"
   end
 
