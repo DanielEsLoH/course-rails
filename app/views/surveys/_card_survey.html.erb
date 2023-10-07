@@ -28,5 +28,11 @@
     <%= button_to survey_path(survey), id: "remove_survey_icon", method: :delete, form: { data: {turbo_confirm: "Are you sure?"}} do %>
       <i class="fa-solid fa-trash text-removeIcon"></i>
     <% end %>
+
+    <%= button_to send_survey_path, id: "send_survey", method: :post do %>
+      <i class="fa-solid fa-share"></i>
+    <% end %>
+    <i class="fa-solid fa-download"></i>
+    <i class="fa-solid fa-users"></i>
   </div>
 </section>
