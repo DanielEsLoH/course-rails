@@ -47,6 +47,10 @@ class SurveysController < ApplicationController
     end
   end
 
+  def send_survey_by_email
+    SurveyMailer.with(email: "surveyrails131@gmail.com").welcome_survey.deliver_later
+  end
+
   private
     def set_survey
       @survey = Survey.find(params[:id])
