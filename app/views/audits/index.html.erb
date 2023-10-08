@@ -1,1 +1,13 @@
-Hello World
+<main>
+  <% if @survey.sections.any? %>
+    <% if @step == 0 %>
+      <%= render 'welcome', survey: @survey %>
+    <% end %>
+  <% else %>
+    <div>
+      <p>
+        there's nothing to show
+      </p>
+    </div>
+  <% end %>
+</main>
