@@ -12,8 +12,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-    <body>
-        <%= yield %>
+  <body>
+    <%= render 'shared/navbar_audits' %>
+    <%= yield %>
     <%= render 'shared/footer' %>
   </body>
 </html>
