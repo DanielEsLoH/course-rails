@@ -1,4 +1,5 @@
 <main>
+<%= @total %>
   <% if @survey.sections.any? %>
     <% if @step == 0 %>
       <%= render 'welcome', { survey: @survey, step: @step } %>
