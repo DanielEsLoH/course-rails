@@ -37,7 +37,10 @@
       <i class="fa-solid fa-share"></i>
     <% end %>
 
-    <i class="fa-solid fa-download"></i>
+    <%= button_to export_answers_path(format: "csv"), method: :get, params: { id: survey.id }, id: "export_answers" do %>
+      <i class="fa-solid fa-download"></i>
+    <% end %>
+
     <i class="fa-solid fa-users"></i>
   </div>
 
