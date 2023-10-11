@@ -58,6 +58,14 @@ class SurveysController < ApplicationController
     SurveyMailer.with(log: @log, subject: @subject, message: @message, survey: @survey).welcome_survey.deliver_later
   end
 
+  def export_answers
+    puts "--"
+    puts "--"
+    puts params
+    puts "--"
+    puts "--"
+  end
+
   private
     def set_survey
       @survey = Survey.find(params[:id] || params[:survey_id])
