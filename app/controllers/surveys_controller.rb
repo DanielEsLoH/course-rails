@@ -1,9 +1,10 @@
 require "csv"
 class SurveysController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_survey, except: %i[ index new create ]
 
   def index
-    @surveys = Survey.all
+    @surveys = current_user.surveys.all
   end
 
   def show
@@ -20,11 +21,6 @@ class SurveysController < ApplicationController
   end
 
   def participants
-    puts "----"
-    puts "----"
-    puts params
-    puts "----"
-    puts "----"
   end
 
   def create
@@ -32,10 +28,14 @@ class SurveysController < ApplicationController
 
     respond_to do |format|
       if @survey.save
-          format.turbo_stream { render turbo_stream: turbo_stream.replace('surveys_all', 
-                        partial: 'surveys/surveys', locals: { surveys: Survey.all })}
-        else
-          format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('surveys_all',
+                                                  partial: 'surveys/surveys',
+                                                  locals: { surveys: Survey.all }) }
+
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal',
+                                                  partial: 'errors/new_survey',
+                                                  locals: {}) }
       end
     end
   end
@@ -43,8 +43,9 @@ class SurveysController < ApplicationController
   def update
     respond_to do |format|
       if @survey.update(survey_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("survey_#{@survey.id}", 
-                                  partial: 'surveys/card_survey', locals: { survey: @survey })}
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("survey_#{@survey.id}",
+                                                  partial: 'surveys/card_survey',
+                                                  locals: { survey: @survey }) }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -64,7 +65,8 @@ class SurveysController < ApplicationController
     @log = Log.new(email: @email, status: 0, survey_id: @survey.id)
     @log.save
 
-    SurveyMailer.with(log: @log, subject: @subject, message: @message, survey: @survey).welcome_survey.deliver_later
+    SurveyMailer.with(log: @log, subject: @subject,
+                      message: @message, survey: @survey).welcome_survey.deliver_later
   end
 
   def export_answers

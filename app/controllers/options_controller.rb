@@ -1,4 +1,5 @@
 class OptionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_question, only: %i[create]
   before_action :set_option, only: %i[edit update destroy]
 

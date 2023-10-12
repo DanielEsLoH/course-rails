@@ -1,8 +1,9 @@
 class EvaluationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_evaluation, only: %i[ show edit update destroy ]
 
   def index
-    @evaluations = Section.grab_all_evaluations
+    @evaluations = current_user.sections.grab_all_evaluations
   end
 
   def show
