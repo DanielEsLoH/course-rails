@@ -1,8 +1,9 @@
 class EvaluationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_evaluation, only: %i[ show edit update destroy ]
 
   def index
-    @evaluations = Section.grab_all_evaluations
+    @evaluations = current_user.sections.grab_all_evaluations
   end
 
   def show
@@ -25,7 +26,7 @@ class EvaluationsController < ApplicationController
         format.turbo_stream { render turbo_stream: turbo_stream.replace('evaluations_all', 
                                                   partial: 'evaluations/evaluations', locals: { evaluations: Section.grab_all_evaluations }) }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', partial: 'errors/new_evaluation') }
       end
     end
   end
