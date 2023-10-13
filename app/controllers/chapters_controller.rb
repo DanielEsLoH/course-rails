@@ -27,9 +27,9 @@ class ChaptersController < ApplicationController
     respond_to do |format|
       if @chapter.save
         format.turbo_stream { render turbo_stream: turbo_stream.replace('chapters_all', 
-                                                  partial: 'chapters/chapters', locals: { chapters: Section.grab_all_chapters })}
+              partial: 'chapters/chapters', locals: { chapters: Section.grab_all_chapters })}
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', partial: 'errors/new_chapter') }
       end
     end
   end
