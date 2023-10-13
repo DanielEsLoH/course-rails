@@ -33,9 +33,7 @@ class SurveysController < ApplicationController
                                                   locals: { surveys: Survey.all }) }
 
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal',
-                                                  partial: 'errors/new_survey',
-                                                  locals: {}) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', partial: 'errors/new_survey', locals: {}) }
       end
     end
   end
