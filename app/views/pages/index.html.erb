@@ -2,19 +2,20 @@
   <div>
     <h1 class="text-center font-bold text-mainColor text-3xl">Survey Rails App</h1>
     <p class="text-center text-sm text-mainColor font-semibold">survey-rails-app.com</p>
-    <p class="py-5 text-sm font-semibold text-mainColor text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
-    Accusamus minima, molestiae aperiam enim ratione hic cumque ut, <br>
-    ipsam dolores inventore autem asperiores error libero eligendi <br>
-    pariatur dignissimos nulla corporis blanditiis.</p>
+    <p class="py-5 text-sm font-semibold text-mainColor text-center">
+      You can now start creating surveys with survey-rails and get the information you need to make better <br>
+      decisions. If you have any questions or suggestions, you can contact us through the contact form or the <br>
+      live chat. We hope you enjoy our application and give us your feedback, thank you for choosing survey-rails! <br>
+    </p>
     <div class="flex w-full justify-around">
       <div class="bg-evaluationStrong p-3 text-white text-sm font-semibold rounded-lg">
         <%= button_to evaluations_path, method: :get, id: 'create_evaluation_index' do %>
-          Create evaluation.
+          Create Evaluation
         <% end %>
       </div>
       <div class="bg-chapterStrong p-3 text-white text-sm font-semibold rounded-lg">
         <%= button_to chapters_path, method: :get, id: 'create_evaluation_index' do %>
-          Create chapter.
+          Create Chapter
         <% end %>
       </div>
     </div>

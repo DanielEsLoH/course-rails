@@ -46,7 +46,7 @@
 
     <div>
       <%= form_with(url: audits_save_answers_path(user_token: token, id: survey.uuid), method: :post,
-              data: { controller: "message", action: "submit->message#show" }) do |f| %>
+                              data: { controller: "message", action: "submit->message#show" }) do |f| %>
         <div class="flex py-2 justify-end gap-5">
           <span class="bg-evaluationStrong p-2 rounded-lg">
             <%= f.submit 'Submit answers', class:"text-white font-semibold" %>
