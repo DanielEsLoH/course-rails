@@ -1,5 +1,17 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<section style="border-radius: 10px; margin: 15px auto; width: 75%; display: flex; justify-content: center; align-items: center;">
+  <div>
+    <p style="color: #d60117; text-aling: center;">Hello <%= @email %>,</p>
+    <p style="color: #d60117;">
+      Welcome to the Survey-Rails app! We are excited to have you on board. 
+      Thank you for joining our survey community. We hope this platform helps you collect valuable ideas.
+    </p>
+    <p style="color: #d60117; text-aling: center;">
+      If you have not yet confirmed your email address, please do so by clicking the following link: 
+      <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token), style: 'color: #d60117; font-weight: bold;' %>
+    </p>
+    <p style="color: #d60117; text-aling: center;">
+      Thanks again for joining us. <br>
+      Best regards, The Survey-Rails App Team
+    </p>
+  </div>
+</section>
