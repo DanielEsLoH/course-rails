@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SurveyRails</title>
+    <title>Survey Rails</title>
     <%= favicon_link_tag asset_path('ruby.png') %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.css"  rel="stylesheet" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
@@ -14,12 +16,13 @@
   </head>
 
   <body>
+    <%= render partial: 'shared/notifications', locals: { message: flash[:notice] } %>
     <%= render 'shared/main_navbar' %>
-    <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <main class="flex justify-between">
       <div class="w-full">
         <%= yield %>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
       </div>
       <% if current_user %>
         <nav class="bg-footerGray p-2">
