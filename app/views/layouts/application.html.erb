@@ -16,9 +16,9 @@
   </head>
 
   <body>
-    <%= render partial: 'shared/notifications', locals: { message: flash[:notice] } %>
     <%= render 'shared/main_navbar' %>
-    <p class="alert"><%= alert %></p>
+    <%= render partial: 'shared/notifications', locals: { message: flash[:notice] } %>
+    <%= render partial: 'shared/notifications', locals: { message: flash[:alert] } %>
     <main class="flex justify-between">
       <div class="w-full">
         <%= yield %>
